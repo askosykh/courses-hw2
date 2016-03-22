@@ -7,7 +7,7 @@ static int arg_quant_check( int argc ) {
         return 1;
     }
 }
-
+// norm_l calculation
 static float norm_l(Matrix* matrix, int rows, int cols ) {
     float norm = 0.;
     float tmp_norm;

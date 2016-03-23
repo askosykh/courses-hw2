@@ -17,9 +17,9 @@ Matrix* create_matrix_from_file( FILE* file ) {
     int n_row = 0;
     int count = 0;
     float value = 0;
-    fscanf(file, "%d", &n_col);
     fscanf(file, "%d", &n_row);
-    Matrix* matrix = create_matrix(n_col, n_row);
+    fscanf(file, "%d", &n_col);
+    Matrix* matrix = create_matrix(n_row, n_col);
     for( size_t i = 0; i < n_row; ++i ) {
         for( size_t j = 0; j < n_col; ++j ) {
             fscanf(file, "%f", &value);
@@ -27,10 +27,6 @@ Matrix* create_matrix_from_file( FILE* file ) {
                 put_to_end(matrix, i, j, value);
             }
         }
-    }
-    for (size_t k = 0; k < matrix->n_elements; ++k ) {
-       // printf("%d, %d, %f\n",matrix->elements[k].row, matrix->elements[k].col,matrix->elements[k].value);
-       // printf("%d, %d, %f\n",matrix->elements[k].row, matrix->elements[k].col, get_elem(matrix, matrix->elements[k].row, matrix->elements[k].col));
     }
     return matrix;
 }
@@ -46,6 +42,7 @@ Matrix* create_matrix( int row, int col ) {
 
 // free memory
 void free_matrix( Matrix* matrix ) {
+    free( matrix->elements );
     free( matrix );
 }
 

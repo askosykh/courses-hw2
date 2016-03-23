@@ -10,7 +10,7 @@ static int arg_quant_check( int argc ) {
 // norm_l calculation
 static float norm_l(Matrix* matrix, int rows, int cols ) {
     float norm = 0.;
-    float tmp_norm;
+    float tmp_norm = 0.;
     for ( size_t j = 0; j < cols; ++j ) {
         tmp_norm = 0.;
         for ( size_t i = 0; i < rows; ++i ) 
@@ -29,10 +29,10 @@ int main( int argc, char* argv[] ) {
          printf("Cannot open the file\n");
         return 1;
     }
-        // check data in file
     Matrix* matrix = create_matrix_from_file(file);
     float norm = norm_l(matrix,get_rows(matrix), get_cols(matrix));
-    printf("L-norm = %f\n",norm);
+    printf("L-norm = %2.2f\n",norm);
+    fclose(file);
     free_matrix(matrix);
     return 0;
 }
